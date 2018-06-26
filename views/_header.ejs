@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div class ="navbar navbar-default navbar-static-top" role="navigatio">
+        <div class="container">
+            <div class="navbar-header">
+            <a class="navbar-brand" href="/">Zombie Nest</a>
+        </div>
+        <ul class="nav navbar-nav navbar-rigth">
+            <% if(currentZombie){ %>
+            <li>
+                <a href="/edit">
+                Hola,<%= currentZombie.name() %>
+                </a>
+            </li>
+            <li>
+                <a href="/logout">Salir</a>
+            </li>
+            <% } else { %>
+                <li>
+                        <a href="/logins">Entrar</a>
+                    </li>
+            <li>
+                <a href="/singup">Registrarse</a>
+            </li>
+            <li>
+                <a href="/armas">Armas</a>
+                </li>
+            <% } %>
+        </ul>
+    </div>
+    <div class="container">
+        <% errors.forEach(function(info){%>
+        <div class="alert alert-danger" role="alert">
+            <%= error %>
+        </div>
+       <% }) %>
+       <% infos.forEach(function(info){%>
+        <div class="alert alert-info" role="alert">
+            <%= info %>
+        </div>
+    <% }) %>

@@ -1,0 +1,28 @@
+<% include _header %>
+<h1>Bienvenid@ a la guarioda zombie!</h1>
+<h1>Usuarios Zombies</h1>
+<% zombies.forEach((zombie)=> { %>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <a href="/zombie/<%= zombie.username %>"><%= zombie.name()%></a>
+    </div>
+    <% if(zombie.bio){%>
+    <div class="panel-body"><%= zombie.bio %></div>
+   <% } %>
+</div>
+<% }) %>
+<h1>Armas</h1>
+<% zombies.forEach((armas)=> { %>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <a href="/armas/<%= armas.descripcion %>"><%= armas.name()%></a>
+        </div>
+        <% if(armas.categoria){%>
+        <div class="panel-body"><%= armas.categoria %></div>
+       <% } %>
+    </div>
+    <% }) %>
+
+
+
+<% include _footer %>
