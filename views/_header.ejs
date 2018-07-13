@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Zombie Nest</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
     <div class ="navbar navbar-default navbar-static-top" role="navigatio">
@@ -14,24 +16,12 @@
         </div>
         <ul class="nav navbar-nav navbar-rigth">
             <% if(currentZombie){ %>
-            <li>
-                <a href="/edit">
-                Hola,<%= currentZombie.name() %>
-                </a>
-            </li>
-            <li>
-                <a href="/logout">Salir</a>
-            </li>
+            <li><a href="/edit"> Hola,<%= currentZombie.name() %> Editar perfil</a></li>
+            <li><a href="/armas">Armas</a></li>
+            <li><a href="/logout">Salir</a></li>
             <% } else { %>
-                <li>
-                        <a href="/logins">Entrar</a>
-                    </li>
-            <li>
-                <a href="/singup">Registrarse</a>
-            </li>
-            <li>
-                <a href="/armas">Armas</a>
-                </li>
+                <li><a href="/login">Entrar</a> </li>
+                <li><a href="/singup">Registrarse</a></li>
             <% } %>
         </ul>
     </div>
