@@ -6,9 +6,11 @@ var SALT_FACTOR =10;
 var zombieSchema = mongoose.Schema({
     username:{type: String, required: true,unique:true},
     password:{type: String,required:true},
+    role: {type: String},
     createAt:{type: Date,default:Date.now},
     displayName:{type: String},
     bio:String
+   
 });
 var donothing =()=>{
     
@@ -16,14 +18,14 @@ var donothing =()=>{
 
 zombieSchema.pre("save",function(done){
     var zombie =this;
-    if(zombie.isModified("password")){
+    if(!zombie.isModified("password")){
         return done();
     }
-    bcrypt.generate(SALT_FACTOR,(err,salt)=>{
+    bcrypt.genSalt(SALT_FACTOR,(err,salt)=>{
         if(err){
             return done(err);
         }
-        bcrypt.hash(zombie,password,salt,donothing,(err,hashedpassword)=>{
+        bcrypt.hash(zombie.password,salt,donothing,(err,hashedpassword)=>{
             if(err){
                 return done(err)
             }
@@ -33,8 +35,8 @@ zombieSchema.pre("save",function(done){
     });
 });
 
-zombieSchema.methods.CheckPassword=(guess,done)=>{
-    bcrypt.compare(guess,this.password,(err,isMatch)=>{
+zombieSchema.methods.CheckPassword=function(guess,done){
+    bcrypt.compare(guess,this.password,function(err,isMatch){
         done(err,isMatch);
     });
 }
